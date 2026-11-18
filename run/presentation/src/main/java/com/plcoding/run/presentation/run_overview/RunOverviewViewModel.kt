@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.plcoding.core.domain.SessionStorage
 import com.plcoding.core.domain.run.RunRepository
 import com.plcoding.core.domain.run.SyncRunScheduler
+import com.plcoding.core.domain.user.UserDataCleaner
 import com.plcoding.run.presentation.run_overview.mapper.toRunUi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
@@ -19,7 +20,8 @@ class RunOverviewViewModel(
     private val runRepository: RunRepository,
     private val syncRunScheduler: SyncRunScheduler,
     private val applicationScope: CoroutineScope,
-    private val sessionStorage: SessionStorage
+    private val sessionStorage: SessionStorage,
+    private val userDataCleaner: UserDataCleaner
 ): ViewModel() {
 
     var state by mutableStateOf(RunOverviewState())
@@ -59,7 +61,7 @@ class RunOverviewViewModel(
     private fun logout() {
         applicationScope.launch {
             syncRunScheduler.cancelAllSyncs()
-            runRepository.deleteAllRuns()
+            userDataCleaner.clearAll()
             runRepository.logout()
             sessionStorage.set(null)
         }
