@@ -59,8 +59,8 @@ The calculation itself is `internal` pure functions in `:goals:data` (`GoalProgr
 - `percent = floor(progress * 100 / target)`, computed in `Long`.
 - `status`:
   - `completedAt != null` → Completed;
-  - otherwise `progress >= target` → Completed (the latch is about to be written);
-  - otherwise today after `periodEnd` → Missed;
+  - otherwise `progress >= target` and today is not after `periodEnd` → Completed (the latch is about to be written);
+  - otherwise today after `periodEnd` → Missed (even if runs synced later push progress to or above target, see the D5 edge);
   - otherwise Active.
 - `daysLeft = ChronoUnit.DAYS.between(today, periodEnd)`.
 
