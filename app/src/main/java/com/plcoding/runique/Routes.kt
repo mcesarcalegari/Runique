@@ -24,4 +24,13 @@ sealed interface Routes {
 
     @Serializable
     data object ActiveRun : Routes
+
+    @Serializable
+    data object Goals : Routes
+
+    @Serializable
+    data object NewGoal : Routes
+
+    @Serializable
+    data class EditGoal(val goalId: String) : Routes
 }

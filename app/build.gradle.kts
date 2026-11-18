@@ -81,6 +81,10 @@ dependencies {
     implementation(projects.run.location)
     implementation(projects.run.network)
 
+    implementation(projects.goals.presentation)
+    implementation(projects.goals.domain)
+    implementation(projects.goals.data)
+
     implementation(projects.core.connectivity.domain)
     implementation(projects.core.connectivity.data)
 }

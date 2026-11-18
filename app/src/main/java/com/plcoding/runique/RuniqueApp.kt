@@ -8,6 +8,9 @@ import com.plcoding.auth.presentation.di.authViewModelModule
 import com.plcoding.core.connectivity.data.di.coreConnectivityDataModule
 import com.plcoding.core.data.di.coreDataModule
 import com.plcoding.core.database.di.databaseModule
+import com.plcoding.goals.data.GoalCompletionObserver
+import com.plcoding.goals.data.di.goalsDataModule
+import com.plcoding.goals.presentation.di.goalsPresentationModule
 import com.plcoding.run.data.di.runDataModule
 import com.plcoding.run.location.di.locationModule
 import com.plcoding.run.network.di.networkModule
@@ -16,6 +19,7 @@ import com.plcoding.runique.di.appModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
@@ -45,9 +49,13 @@ class RuniqueApp: Application() {
                 databaseModule,
                 networkModule,
                 runDataModule,
-                coreConnectivityDataModule
+                coreConnectivityDataModule,
+                goalsDataModule,
+                goalsPresentationModule
             )
         }
+
+        get<GoalCompletionObserver>().start(applicationScope)
     }
 
     override fun attachBaseContext(base: Context?) {

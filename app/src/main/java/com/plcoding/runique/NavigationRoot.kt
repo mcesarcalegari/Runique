@@ -12,6 +12,8 @@ import com.plcoding.auth.presentation.intro.IntroScreenRoot
 import com.plcoding.auth.presentation.login.LoginScreenRoot
 import com.plcoding.auth.presentation.register.RegisterScreenRoot
 import com.plcoding.core.notification.ActiveRunService
+import com.plcoding.goals.presentation.goal_editor.GoalEditorScreenRoot
+import com.plcoding.goals.presentation.goal_list.GoalsScreenRoot
 import com.plcoding.run.presentation.active_run.ActiveRunScreenRoot
 import com.plcoding.run.presentation.run_overview.RunOverviewScreenRoot
 
@@ -27,6 +29,7 @@ fun NavigationRoot(
     ) {
         authGraph(navController)
         runGraph(navController, onAnalyticsClick)
+        goalsGraph(navController)
     }
 }
 
@@ -96,6 +99,9 @@ private fun NavGraphBuilder.runGraph(
                     navController.navigate(Routes.ActiveRun)
                 },
                 onAnalyticsClick = onAnalyticsClick,
+                onGoalsClick = {
+                    navController.navigate(Routes.Goals)
+                },
                 onLogoutClick = {
                     navController.navigate(Routes.Auth) {
                         popUpTo(Routes.Run) {
@@ -136,5 +142,42 @@ private fun NavGraphBuilder.runGraph(
                 }
             )
         }
+    }
+}
+
+private fun NavGraphBuilder.goalsGraph(navController: NavHostController) {
+    composable<Routes.Goals> {
+        GoalsScreenRoot(
+            onBackClick = {
+                navController.navigateUp()
+            },
+            onAddGoalClick = {
+                navController.navigate(Routes.NewGoal)
+            },
+            onEditGoalClick = { goalId ->
+                navController.navigate(Routes.EditGoal(goalId))
+            }
+        )
+    }
+    composable<Routes.NewGoal> {
+        GoalEditorScreenRoot(
+            onBackClick = {
+                navController.navigateUp()
+            },
+            onFinished = {
+                navController.popBackStack(Routes.Goals, inclusive = false)
+            }
+        )
+    }
+    // The goalId argument reaches GoalEditorViewModel through its SavedStateHandle.
+    composable<Routes.EditGoal> {
+        GoalEditorScreenRoot(
+            onBackClick = {
+                navController.navigateUp()
+            },
+            onFinished = {
+                navController.popBackStack(Routes.Goals, inclusive = false)
+            }
+        )
     }
 }
