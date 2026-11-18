@@ -12,6 +12,7 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.bundles.koin)
     implementation(libs.org.mongodb.bson)
+    implementation(libs.timber)
 
     implementation(projects.core.domain)
     implementation(projects.core.database)

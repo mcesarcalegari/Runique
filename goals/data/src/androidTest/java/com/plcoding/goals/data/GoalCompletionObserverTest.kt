@@ -99,4 +99,22 @@ class GoalCompletionObserverTest {
         assertThat(db.goalDao.getById("old")?.completedAtUtc).isNull()
         job.cancel()
     }
+
+    @Test
+    fun corruptRow_doesNotCrashOrBlockOtherGoals() = runTest {
+        db.goalDao.upsert(weeklyGoal("corrupt").copy(type = "NOT_A_TYPE"))
+        db.goalDao.upsert(weeklyGoal("goal"))
+        val job = GoalCompletionObserver(db.goalDao, runRepository, clock).start(backgroundScope)
+
+        runRepository.add(run("r1", "2024-03-05T07:00", 31_000))
+
+        db.goalDao.observeAll()
+            .filter { goals -> goals.first { it.id == "goal" }.completedAtUtc != null }
+            .test {
+                awaitItem()
+                cancelAndIgnoreRemainingEvents()
+            }
+        assertThat(db.goalDao.getById("corrupt")?.completedAtUtc).isNull()
+        job.cancel()
+    }
 }
