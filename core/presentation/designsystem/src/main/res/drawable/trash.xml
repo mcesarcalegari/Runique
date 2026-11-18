@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Converted from Figma SVG export: f07_trash.svg -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+    <path
+        android:pathData="M2.66667 4.66667H13.3333"
+        android:strokeColor="#FF3B30"
+        android:strokeWidth="1.13333"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M6.66667 7.33333V11.3333M9.33333 7.33333V11.3333"
+        android:strokeColor="#FF3B30"
+        android:strokeWidth="1.13333"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M4 4.66667L4.66667 13.3333H11.3333L12 4.66667"
+        android:strokeColor="#FF3B30"
+        android:strokeWidth="1.13333"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M6 4.66667V2.66667H10V4.66667"
+        android:strokeColor="#FF3B30"
+        android:strokeWidth="1.13333"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>
