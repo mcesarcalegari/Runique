@@ -13,4 +13,7 @@ dependencies {
     implementation(libs.bundles.koin)
 
     implementation(projects.core.domain)
+
+    androidTestImplementation(libs.bundles.android.test)
+    androidTestImplementation(libs.room.testing)
 }
