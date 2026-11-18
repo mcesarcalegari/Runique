@@ -23,11 +23,15 @@ import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.workmanager.koin.workManagerFactory
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 import timber.log.Timber
 
-class RuniqueApp: Application() {
+open class RuniqueApp: Application() {
 
     val applicationScope = CoroutineScope(SupervisorJob())
+
+    /** Loaded last so instrumented tests can replace device-boundary dependencies (e.g. HTTP). */
+    protected open val testOverrideModules: List<Module> = emptyList()
 
     override fun onCreate() {
         super.onCreate()
@@ -53,6 +57,7 @@ class RuniqueApp: Application() {
                 goalsDataModule,
                 goalsPresentationModule
             )
+            modules(testOverrideModules)
         }
 
         get<GoalCompletionObserver>().start(applicationScope)
