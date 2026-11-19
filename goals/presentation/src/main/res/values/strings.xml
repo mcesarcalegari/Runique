@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Goals list (Figma frames 02–05) -->
+    <string name="goals">Goals</string>
+    <string name="goals_tab_active">Active</string>
+    <string name="goals_tab_completed">Completed</string>
+    <string name="goals_tab_missed">Missed</string>
+    <string name="add_goal">Add goal</string>
+
+    <string name="goal_period_weekly">Weekly</string>
+    <string name="goal_period_monthly">Monthly</string>
+    <string name="goal_type_distance">Distance</string>
+    <string name="goal_type_duration">Duration</string>
+    <string name="goal_type_frequency">Frequency</string>
+    <string name="goal_card_title">%1$s %2$s</string>
+
+    <string name="goal_target_distance">" / %1$s km"</string>
+    <string name="goal_target_duration">" / %1$sh"</string>
+    <string name="goal_target_frequency">" / %1$s runs"</string>
+    <string name="goal_percent">%1$d%%</string>
+
+    <plurals name="goal_days_left">
+        <item quantity="one">%d day left</item>
+        <item quantity="other">%d days left</item>
+    </plurals>
+    <string name="goal_ended">Ended %1$s</string>
+    <string name="goal_badge_completed">Completed</string>
+    <string name="goal_badge_missed">Missed</string>
+
+    <string name="goals_empty_active_title">No active goals</string>
+    <string name="goals_empty_active_description">Tap + to start tracking one</string>
+
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_last_day">Last day</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_ends">Ends %1$s</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goals_empty_completed_title">No completed goals</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goals_empty_completed_description">Goals you reach show up here</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goals_empty_missed_title">No missed goals</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goals_empty_missed_description">Goals that end below target show up here</string>
+    <!-- New / Edit goal (Figma frames 06–08) -->
+    <string name="new_goal">New goal</string>
+    <string name="edit_goal">Edit goal</string>
+    <string name="goal_type">Goal type</string>
+    <string name="goal_target">Target</string>
+    <string name="goal_period">Period</string>
+    <string name="goal_unit_km">km</string>
+    <string name="goal_unit_runs">runs</string>
+    <string name="goal_helper_distance">Total distance to cover during the period.</string>
+    <string name="goal_helper_edit">Only the target value can be edited.</string>
+    <string name="goal_helper_weekly">Starts Monday 00:00 local, ends Sunday 23:59.</string>
+    <string name="goal_type_locked">Type can\'t be changed after creation</string>
+    <string name="goal_period_locked">Period and dates stay the same</string>
+    <string name="save_goal">Save goal</string>
+    <string name="save_changes">Save changes</string>
+    <string name="delete_goal">Delete goal</string>
+    <string name="delete_goal_title">Delete this goal?</string>
+    <string name="delete_goal_description">This can\'t be undone. Runs that contributed to this goal stay in your history.</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_unit_hours">hours</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_helper_duration">Total running time to reach during the period.</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_helper_frequency">Number of runs to complete during the period.</string>
+    <!-- TODO(design): no Figma frame yet, placeholder copy (see design-follow-ups.md) -->
+    <string name="goal_helper_monthly">Starts on the 1st 00:00 local, ends on the last day 23:59.</string>
+    <!-- TODO(design): no Figma frame yet, placeholder hint for an empty target -->
+    <string name="goal_target_hint">0</string>
+</resources>

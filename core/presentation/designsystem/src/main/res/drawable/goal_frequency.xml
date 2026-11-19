@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Converted from Figma SVG export: f02_frequency.svg -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="18"
+    android:viewportHeight="18">
+    <path
+        android:pathData="M2.25 9C2.25119 7.69749 2.6292 6.42313 3.33844 5.33065C4.04768 4.23817 5.05786 3.37422 6.24713 2.84302C7.4364 2.31181 8.75396 2.13603 10.0409 2.33689C11.3278 2.53775 12.5292 3.10666 13.5 3.975L15.75 6"
+        android:strokeColor="#00F15E"
+        android:strokeWidth="1.275"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M15.75 3V6H12.75"
+        android:strokeColor="#00F15E"
+        android:strokeWidth="1.275"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M15.75 9C15.7488 10.3025 15.3708 11.5769 14.6616 12.6693C13.9523 13.7618 12.9421 14.6258 11.7529 15.157C10.5636 15.6882 9.24604 15.864 7.9591 15.6631C6.67217 15.4623 5.47084 14.8933 4.5 14.025L2.25 12"
+        android:strokeColor="#00F15E"
+        android:strokeWidth="1.275"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+    <path
+        android:pathData="M2.25 15V12H5.25"
+        android:strokeColor="#00F15E"
+        android:strokeWidth="1.275"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

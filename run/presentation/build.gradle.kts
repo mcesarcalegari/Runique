@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.runique.android.feature.ui)
     alias(libs.plugins.mapsplatform.secrets.plugin)
+    alias(libs.plugins.runique.jvm.junit5)
 }
 
 android {

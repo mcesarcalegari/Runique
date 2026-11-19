@@ -95,3 +95,31 @@ val StartIcon: ImageVector
 val StopIcon: ImageVector
     @Composable
     get() = ImageVector.vectorResource(id = R.drawable.stop)
+
+val DistanceIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.goal_distance)
+
+val DurationIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.goal_duration)
+
+val FlagIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.goal_flag)
+
+val FrequencyIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.goal_frequency)
+
+val GoalTargetIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.goal_target)
+
+val PlusIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.plus)
+
+val TrashIcon: ImageVector
+    @Composable
+    get() = ImageVector.vectorResource(id = R.drawable.trash)

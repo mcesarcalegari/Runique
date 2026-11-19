@@ -7,7 +7,7 @@ android {
     namespace = "com.plcoding.runique"
 
     defaultConfig {
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.plcoding.runique.RuniqueTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -49,8 +49,8 @@ dependencies {
     api(libs.play.feature.delivery.ktx)
 
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.bundles.android.test)
+    androidTestImplementation(libs.ktor.client.mock)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
@@ -80,6 +80,10 @@ dependencies {
     implementation(projects.run.data)
     implementation(projects.run.location)
     implementation(projects.run.network)
+
+    implementation(projects.goals.presentation)
+    implementation(projects.goals.domain)
+    implementation(projects.goals.data)
 
     implementation(projects.core.connectivity.domain)
     implementation(projects.core.connectivity.data)

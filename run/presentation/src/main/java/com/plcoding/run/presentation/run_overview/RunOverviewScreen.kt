@@ -21,6 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.plcoding.core.presentation.designsystem.AnalyticsIcon
+import com.plcoding.core.presentation.designsystem.GoalTargetIcon
 import com.plcoding.core.presentation.designsystem.LogoIcon
 import com.plcoding.core.presentation.designsystem.LogoutIcon
 import com.plcoding.core.presentation.designsystem.RunIcon
@@ -38,6 +39,7 @@ fun RunOverviewScreenRoot(
     onStartRunClick: () -> Unit,
     onLogoutClick: () -> Unit,
     onAnalyticsClick: () -> Unit,
+    onGoalsClick: () -> Unit,
     viewModel: RunOverviewViewModel = koinViewModel(),
 ) {
     RunOverviewScreen(
@@ -45,6 +47,7 @@ fun RunOverviewScreenRoot(
         onAction = { action ->
             when(action) {
                 RunOverviewAction.OnAnalyticsClick -> onAnalyticsClick()
+                RunOverviewAction.OnGoalsClick -> onGoalsClick()
                 RunOverviewAction.OnStartClick -> onStartRunClick()
                 RunOverviewAction.OnLogoutClick -> onLogoutClick()
                 else -> Unit
@@ -75,6 +78,10 @@ private fun RunOverviewScreen(
                         title = stringResource(id = R.string.analytics)
                     ),
                     DropDownItem(
+                        icon = GoalTargetIcon,
+                        title = stringResource(id = R.string.goals)
+                    ),
+                    DropDownItem(
                         icon = LogoutIcon,
                         title = stringResource(id = R.string.logout)
                     ),
@@ -82,7 +89,8 @@ private fun RunOverviewScreen(
                 onMenuItemClick = { index ->
                     when (index) {
                         0 -> onAction(RunOverviewAction.OnAnalyticsClick)
-                        1 -> onAction(RunOverviewAction.OnLogoutClick)
+                        1 -> onAction(RunOverviewAction.OnGoalsClick)
+                        2 -> onAction(RunOverviewAction.OnLogoutClick)
                     }
                 },
                 startContent = {

@@ -4,6 +4,7 @@ import com.plcoding.convention.addUiLayerDependencies
 import com.plcoding.convention.configureAndroidCompose
 import com.plcoding.convention.configureBuildTypes
 import com.plcoding.convention.configureKotlinAndroid
+import com.plcoding.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -32,6 +33,8 @@ class AndroidDynamicFeatureConventionPlugin : Plugin<Project> {
             dependencies {
                 addUiLayerDependencies(target)
                 "testImplementation"(kotlin("test"))
+                // Module template tests (ExampleUnitTest) use JUnit 4 directly.
+                "testImplementation"(libs.findLibrary("junit").get())
             }
         }
     }

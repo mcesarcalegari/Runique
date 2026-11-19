@@ -1,0 +1,86 @@
+schema: spec-driven
+
+# Project context (optional)
+# Add only constraints that should guide OpenSpec artifacts and workflows.
+# Include constraints an agent cannot infer by reading the code.
+# Keep general project documentation and discoverable codebase facts out.
+# Example:
+#   context: |
+#     Designs and tasks must cover Windows, macOS, and Linux
+#     Write all artifacts in Spanish
+context: |
+  UI source of truth (Figma)
+  - All UI for this project is defined in Figma and MUST be read through the Figma MCP tools,
+    never from screenshots, memory or guesswork:
+    https://www.figma.com/design/bcIkmnAUfjg4WcR5qQUR2Y/Runique---Mauro-Team?node-id=0-1
+    (fileKey: bcIkmnAUfjg4WcR5qQUR2Y, root node-id: 0:1).
+  - Any proposal/design/spec/task that touches UI MUST cite the specific Figma frame URL(s)
+    (with node-id) it implements. Figma wins over any conflicting text description.
+  - Icons from Figma MUST be converted with the `figma-to-android-vector` skill, using the
+    exported SVG path data (never hand-written or invented paths).
+
+  Compose previews
+  - Every Compose UI composable that is NOT a Root composable (i.e. every Screen composable and
+    every sub-composable/component) MUST have one @Preview per distinct state it can render
+    (e.g. empty, loading, content, error, disabled, selected...). Root composables (the ones
+    wiring the ViewModel/navigation) do not get previews.
+  - Specs and tasks for UI work MUST list those states explicitly, so each preview maps to one.
+
+  Global acceptance criteria
+  - A change is only done when ALL unit tests AND ALL instrumented (androidTest) tests of every
+    affected module pass, e.g. `./gradlew :<module>:testDebugUnitTest` and
+    `./gradlew :<module>:connectedDebugAndroidTest` on a running emulator/device.
+  - This is the only global criterion. Each change MAY add its own criteria on top of it, but
+    never weaken or skip it. Tasks MUST include a final step that runs these tests per affected module.
+
+  Conventions (project skills in .claude/skills are authoritative)
+  - Artifacts MUST name the relevant skill(s) for each task so the implementer loads them.
+    Invoke each skill by its exact name below.
+  Android skills:
+  - `android-module-structure`: Invoke when deciding where new code/modules live, adding a feature or core module, or touching Gradle convention plugins / module dependency rules.
+  - `android-version-catalog`: Invoke when adding or updating a dependency, plugin or bundle in libs.versions.toml, or creating a convention plugin for a library with non-trivial Gradle setup.
+  - `android-presentation-mvi`: Invoke when creating or changing a ViewModel, screen State/Action/Event, the Root/Screen composable split, UI models, UiText error mapping or SavedStateHandle process-death handling.
+  - `android-compose-architecture`: Invoke when structuring a screen-level composable: state ownership, stability/recomposition, side effects (LaunchedEffect etc.), lazy layouts and deferred state reads.
+  - `android-compose-components`: Invoke every time a non-Root composable (component or sub-composable) is written or changed, covering parameters, previews per state, sizing, theme colors, icons, string resources and design-system reuse.
+  - `android-navigation`: Invoke when adding routes, screens to a nav graph, cross-feature navigation callbacks, or wiring feature nav graphs in :app.
+  - `android-di-koin`: Invoke when defining or changing Koin modules, providing repositories/ViewModels, injecting dependencies or wiring modules in the Application class.
+  - `android-data-layer`: Invoke when writing data sources, repositories, DTOs, mappers, Room entities/DAOs, Ktor client calls, token storage or offline-first logic.
+  - `android-error-handling`: Invoke when defining error types or working with the Result<T, E> / DataError / EmptyResult wrapper and its map/onSuccess/onFailure helpers in any layer.
+  - `android-background`: Invoke when implementing WorkManager jobs (one-time, periodic, expedited), foreground services, work observation, the Koin WorkerFactory or the SyncScheduler abstraction.
+  - `android-unit-testing`: Invoke when writing or reviewing JVM unit tests (JUnit5, AssertK, Turbine, fakes) for ViewModels, validators, mappers, use cases or any pure logic without I/O.
+  - `android-integration-testing`: Invoke when writing tests that wire real production classes across an I/O boundary (in-memory Room, Ktor MockEngine, fake Clock, WorkManager test helper), preferably instrumented.
+  - `android-ui-testing`: Invoke when writing instrumented Compose UI tests with createAndroidComposeRule, such as UI + real ViewModel, feature E2E flows or the Robot pattern, including StandardTestDispatcher clock handling.
+  - `android-jvm-test-coverage`: Invoke when coverage numbers for a module's JVM unit tests are needed; it reports Android-Studio-style coverage without modifying build files.
+  - `android-jacoco-setup`: Invoke only when a permanent, committed JaCoCo coverage setup (unit + instrumented) must be added to the build; it edits build files.
+  - `android-preview-figma-verify`: Invoke after building/changing UI to diff a single rendered @Preview against a single Figma frame (node-id), with no device needed; it reports differences only.
+  - `android-ui-screenshot-verify`: Invoke to visually verify a live screen on the emulator against its Figma frame (overlap, clipping, colors, icons) via annotated screenshots.
+  - `android-ui-verify`: Invoke to structurally verify a live screen against Figma (hierarchy, texts, dp sizes ±4dp, dynamic states) via the UI Automator tree.
+  - `android-cli`: MANDATORY whenever the app must be built, installed, launched or interacted with on an emulator/device (screenshots, UI inspection, journeys), and for SDK management or Android docs lookup.
+  Kotlin skills:
+  - `kotlin-coroutines`: Invoke when writing suspend functions, scopes, launch/async, dispatchers, cancellation handling, synchronization (Mutex) or wrapping blocking code.
+  - `kotlin-flows`: Invoke when writing Flow/StateFlow/SharedFlow/Channel code, operators, stateIn/shareIn, callbackFlow conversions, backpressure or lifecycle-aware collection.
+  Other skills:
+  - `compose-adaptive-layouts`: Invoke when the composable tree itself must change across device configurations (elements rearranged, shown/hidden, or re-containered, e.g. tablet/landscape); not for plain responsive sizing.
+  - `figma-to-android-vector`: Invoke whenever an icon or vector from Figma must become an Android VectorDrawable XML or Compose ImageVector, converting the real SVG path data mechanically.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing
